@@ -1,0 +1,32 @@
+ll fact[N];
+ll inv[N];
+
+void pre(ll md=MOD){
+        ll i,j;
+        fact[0]=1;
+        for(i=1;i<N;i++){
+                fact[i]=(fact[i-1]*i)%md;
+        }
+        inv[N-1]=modinv(fact[N-1],md);
+        
+        for(i=N-2;i>=0;i--){
+                inv[i]=((i+1)*inv[i+1])%md;
+        }
+}
+ll ncr(ll n,ll r,ll md=MOD){
+        if(r>n)return 0;
+        // cout<<n<<" "<<r<<endl;
+        ll ans=fact[n];
+        ans*=inv[r];
+        ans%=md;
+        ans*=inv[n-r];
+        ans%=md;
+        return ans;
+}
+ll npr(ll n,ll r,ll md=MOD){
+        if(r>n)return 0;
+        ll ans=fact[n];
+        ans*=inv[n-r];
+        ans%=md;
+        return ans;
+}
