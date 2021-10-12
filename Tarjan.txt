@@ -1,0 +1,29 @@
+vll a[N];
+vll vis(N);
+vll low(N);
+vll disc(N);
+ll time = 0;
+void tarjan(ll u,ll p)
+{
+        vis[u] = true;
+        disc[u] = time;
+        low[u] = time;
+        time++;
+        for(auto v:a[u])
+        {
+            if(!vis[v])
+            {
+                tarjan(v,u);
+                low[u] = min(low[u],low[v]);
+                if(low[v] > disc[u])
+		{
+			// bridge edge
+		}
+            }
+            else if(v != p)
+            {
+                low[u] = min(low[u],disc[v]);
+            }
+        }
+    }
+};
